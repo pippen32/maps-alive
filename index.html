@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maps Alive — Tu negocio vivo en Google Maps, cada mes</title>
+<meta name="description" content="Operación mensual de tu Google Business Profile: publicaciones, fotos al día, TODAS las reseñas contestadas en 48 h y un reporte mensual en lenguaje simple. $199/mes por perfil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#14532d; --green2:#0d3a1f; --green3:#1c6b3a;
+  --cream:#f3ead3; --bone:#faf6ea; --pin:#ef4444; --pin2:#f97316;
+  --ink:#12291a; --card:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--green2);color:var(--ink);overflow-x:hidden}
+h1,h2,h3,.sg{font-family:'Space Grotesk',system-ui,sans-serif}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+/* street-line texture */
+.streets{position:relative}
+.streets::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.14;
+  background-image:
+   linear-gradient(90deg,transparent 0 118px,var(--cream) 118px 120px,transparent 120px),
+   linear-gradient(0deg,transparent 0 86px,var(--cream) 86px 88px,transparent 88px),
+   linear-gradient(35deg,transparent 0 300px,var(--cream) 300px 302px,transparent 302px);
+  background-size:340px 260px,340px 260px,700px 700px}
+/* header */
+header{background:var(--green);border-bottom:3px solid var(--pin);position:relative;z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;color:var(--bone);text-decoration:none}
+.logo .pinmark{width:40px;height:40px;flex:0 0 auto}
+.logo b{font-family:'Space Grotesk';font-size:26px;letter-spacing:.5px}
+.logo b em{font-style:normal;color:var(--pin)}
+.bar .mini{color:var(--cream);font-weight:700;font-size:14px}
+/* hero */
+.hero{background:linear-gradient(160deg,var(--green) 55%,var(--green2));color:var(--bone);padding:52px 0 60px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;position:relative;z-index:2}
+.kicker{display:inline-block;background:var(--pin);color:#fff;font-weight:800;font-size:13px;letter-spacing:1.2px;padding:7px 14px;border-radius:999px;text-transform:uppercase}
+.hero h1{font-size:clamp(34px,5.2vw,58px);line-height:1.04;margin:18px 0 14px}
+.hero h1 .hl{color:var(--pin);text-decoration:underline;text-decoration-color:var(--cream);text-decoration-thickness:5px;text-underline-offset:6px}
+.hero p.lead{font-size:19px;line-height:1.55;color:var(--cream);max-width:34em}
+.price-chip{display:flex;align-items:baseline;gap:12px;margin:24px 0 6px;flex-wrap:wrap}
+.price-chip .big{font-family:'Space Grotesk';font-size:56px;font-weight:700;color:#fff}
+.price-chip .per{font-size:19px;color:var(--cream);font-weight:700}
+.price-chip .vs{font-size:15px;color:#ffd9d3;font-weight:700}
+.cta{display:inline-block;background:var(--pin);color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:21px;padding:19px 36px;border-radius:16px;text-decoration:none;box-shadow:0 10px 0 #991b1b;transition:transform .15s;margin-top:16px;text-align:center}
+.cta:hover{transform:translateY(3px);box-shadow:0 7px 0 #991b1b}
+.cta small{display:block;font-family:'Manrope';font-weight:700;font-size:13px;opacity:.9;margin-top:4px}
+.hero-photo{border-radius:22px;border:5px solid var(--cream);box-shadow:0 24px 50px rgba(0,0,0,.45);transform:rotate(1.2deg)}
+.hero-points{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.hero-points div{background:rgba(250,246,234,.1);border:1.5px solid rgba(243,234,211,.35);border-radius:12px;padding:11px 13px;font-weight:700;font-size:15px;color:var(--bone)}
+.hero-points div::before{content:"📍 "}
+/* route */
+.route{background:var(--bone);padding:64px 0 10px;position:relative}
+.route-head{text-align:center;max-width:44em;margin:0 auto 8px}
+.route-head h2{font-size:clamp(28px,4vw,42px);color:var(--green)}
+.route-head p{font-size:17px;margin-top:8px;color:#3c5546}
+.stop{position:relative;padding:38px 0 38px 86px}
+.stop::before{content:"";position:absolute;left:33px;top:0;bottom:0;width:5px;background:repeating-linear-gradient(180deg,var(--pin) 0 14px,transparent 14px 26px);border-radius:3px}
+.stop:first-of-type::before{top:44px}
+.stopnum{position:absolute;left:0;top:34px;width:72px;height:72px;background:var(--pin);color:#fff;border-radius:50% 50% 50% 6px;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;border:4px solid var(--bone);box-shadow:0 8px 20px rgba(20,83,45,.35);z-index:2}
+.stopnum span{transform:rotate(45deg);font-family:'Space Grotesk';font-weight:700;font-size:27px}
+.stop h2{font-size:clamp(24px,3.4vw,34px);color:var(--green);margin-bottom:6px}
+.stop .sub{font-size:16.5px;color:#3c5546;max-width:46em;margin-bottom:20px;line-height:1.55}
+.sample-tag{display:inline-block;background:var(--green);color:var(--cream);font-weight:800;letter-spacing:1.4px;font-size:12.5px;padding:6px 13px;border-radius:6px;text-transform:uppercase;margin-bottom:14px}
+/* profile sample */
+.profile-card{background:var(--card);border-radius:20px;box-shadow:0 14px 34px rgba(20,83,45,.16);padding:26px;border-top:8px solid var(--pin)}
+.profile-top{display:flex;gap:18px;align-items:center;flex-wrap:wrap;border-bottom:2px dashed #d8cfb4;padding-bottom:18px;margin-bottom:18px}
+.avatar{width:74px;height:74px;border-radius:16px;background:var(--green);color:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;font-size:30px;flex:0 0 auto}
+.profile-top h3{font-size:24px;color:var(--ink)}
+.stars{color:#f59e0b;font-size:19px;letter-spacing:2px}
+.profile-top .meta{color:#5b7263;font-weight:600;font-size:14.5px}
+.badge-open{background:#dcfce7;color:#166534;font-weight:800;font-size:13px;padding:5px 11px;border-radius:999px}
+.review{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.review .box{border-radius:14px;padding:18px;line-height:1.55;font-size:15.5px}
+.review .theirs{background:#fdf6e3;border:2px solid #e7dcbb}
+.review .ours{background:#14532d;color:var(--bone);border:2px solid var(--green2)}
+.review .ours b{color:#ffd9d3}
+.review .who{font-weight:800;margin-bottom:4px}
+.review .ours .who::before{content:"📍 "}
+.note{font-size:13.5px;color:#5b7263;margin-top:12px;font-weight:600}
+/* report */
+.report-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.rep{background:var(--card);border-radius:16px;padding:22px 18px;box-shadow:0 10px 24px rgba(20,83,45,.14);position:relative;border-bottom:7px solid var(--pin)}
+.rep .pin-ic{font-size:26px}
+.rep .num{font-family:'Space Grotesk';font-size:42px;font-weight:700;color:var(--green);line-height:1.05}
+.rep .lbl{font-weight:800;font-size:15.5px;margin-top:2px}
+.rep .expl{font-size:13.5px;color:#5b7263;margin-top:6px;line-height:1.5;font-weight:600}
+.report-line{background:var(--green);color:var(--bone);border-radius:16px;padding:20px 24px;margin-top:18px;font-size:16.5px;line-height:1.6}
+.report-line b{color:#ffd9d3}
+/* comparison */
+.comp{background:var(--card);border-radius:20px;box-shadow:0 14px 34px rgba(20,83,45,.16);padding:28px}
+.comp-row{display:grid;grid-template-columns:210px 1fr 118px;gap:14px;align-items:center;margin:16px 0}
+.comp-row .name{font-weight:800;font-size:16.5px}
+.comp-row .name small{display:block;font-weight:600;color:#5b7263;font-size:13px}
+.track{background:#efe8d2;border-radius:10px;height:38px;overflow:hidden}
+.fill{height:100%;border-radius:10px;background:#9db3a4}
+.fill.us{background:linear-gradient(90deg,var(--pin),var(--pin2))}
+.comp-row .amt{font-family:'Space Grotesk';font-weight:700;font-size:21px;text-align:right}
+.comp-row.us .name,.comp-row.us .amt{color:var(--pin)}
+.comp-note{font-size:14px;color:#5b7263;font-weight:600;margin-top:8px;line-height:1.55}
+/* includes */
+.incl{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.step-card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 10px 24px rgba(20,83,45,.13);border-left:8px solid var(--green3)}
+.step-card .wk{font-family:'Space Grotesk';font-weight:700;color:var(--pin);font-size:14px;letter-spacing:1.2px;text-transform:uppercase}
+.step-card h3{font-size:20px;margin:5px 0 7px;color:var(--green)}
+.step-card p{font-size:15.5px;line-height:1.58;color:#33503f}
+.incl-list{background:var(--green);color:var(--bone);border-radius:16px;padding:24px 26px;margin-top:18px}
+.incl-list h3{font-size:21px;margin-bottom:12px}
+.incl-list ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 22px}
+.incl-list li{font-weight:700;font-size:16px}
+.incl-list li::before{content:"📍 "}
+/* honest */
+.honest{background:#fdf6e3;border:3px dashed var(--pin);border-radius:20px;padding:28px}
+.honest h3{color:#991b1b;font-size:23px;margin-bottom:12px}
+.honest ul{margin-left:22px;line-height:1.75;font-size:16.5px;font-weight:600;color:#4a3b12}
+.final{background:linear-gradient(160deg,var(--green),var(--green2));color:var(--bone);padding:60px 0 70px;text-align:center}
+.final h2{font-size:clamp(28px,4.4vw,44px);max-width:22em;margin:0 auto 12px}
+.final p{color:var(--cream);font-size:18px;max-width:40em;margin:0 auto}
+.final .cta{font-size:23px;padding:22px 46px}
+footer{background:var(--green2);color:#b9cdbd;text-align:center;padding:22px 16px;font-size:14px;font-weight:600}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+  .review{grid-template-columns:1fr}
+  .report-grid{grid-template-columns:1fr 1fr}
+  .incl{grid-template-columns:1fr}
+  .incl-list ul{grid-template-columns:1fr}
+  .comp-row{grid-template-columns:1fr;gap:6px}
+  .comp-row .amt{text-align:left}
+  .stop{padding-left:70px}
+  .stopnum{width:58px;height:58px}
+  .stopnum span{font-size:22px}
+  .stop::before{left:26px}
+  .hero-points{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">
+      <svg class="pinmark" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2C14.6 2 7 9.5 7 18.8 7 30.5 24 46 24 46s17-15.5 17-27.2C41 9.5 33.4 2 24 2z" fill="#ef4444"/><circle cx="24" cy="19" r="8" fill="#faf6ea"/></svg>
+      <b>MAPS <em>ALIVE</em></b>
+    </a>
+    <div class="mini">Tu perfil de Google, operado cada mes · $199/mes</div>
+  </div>
+</header>
+
+<section class="hero streets">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Google Business Profile · Operación mensual</span>
+      <h1>Tu negocio aparece en el mapa. <span class="hl">¿Pero está VIVO?</span></h1>
+      <p class="lead">Cuando alguien busca tu negocio en Google Maps, encuentra un perfil dormido: fotos viejas, reseñas sin contestar y cero publicaciones. <b>Maps Alive lo opera por ti cada mes</b> — tú atiendes tu negocio, nosotros atendemos tu mapa.</p>
+      <div class="price-chip">
+        <span class="big">$199</span><span class="per">/mes por perfil</span>
+        <span class="vs">vs. $249–$750/mes de la competencia verificada ↓</span>
+      </div>
+      <a class="cta" href="#PAYHIP-URL">ACTIVAR MI PRIMER MES — $199<small>Pago único del primer mes · Sin contratos largos</small></a>
+      <div class="hero-points">
+        <div>4 publicaciones al mes en tu perfil</div>
+        <div>TODAS las reseñas contestadas en 48 h</div>
+        <div>Fotos y datos siempre al día</div>
+        <div>Reporte mensual en lenguaje simple</div>
+      </div>
+    </div>
+    <div>
+      <img class="hero-photo" src="assets/hero.jpg" alt="Dueño de negocio local sonriendo dentro de su panadería" width="1100" height="733">
+    </div>
+  </div>
+</section>
+
+<main class="route">
+  <div class="wrap">
+    <div class="route-head">
+      <h2>🗺️ La ruta: así se ve el servicio, parada por parada</h2>
+      <p>Sin humo. Aquí ves un perfil de muestra, las respuestas reales que escribimos y el reporte exacto que recibe el dueño cada mes.</p>
+    </div>
+
+    <!-- STOP 1 -->
+    <section class="stop">
+      <div class="stopnum"><span>1</span></div>
+      <span class="sample-tag">Sample · Ejemplo — negocio ficticio</span>
+      <h2>El perfil que ve tu cliente</h2>
+      <p class="sub">Este es el tipo de perfil que mantenemos vivo. Datos correctos, horario al día, fotos recientes y movimiento constante — eso es lo que Google y tus clientes ven.</p>
+      <div class="profile-card">
+        <div class="profile-top">
+          <div class="avatar">LE</div>
+          <div>
+            <h3>Panadería La Esquina <span style="font-size:13px;color:#991b1b;font-weight:800">· SAMPLE</span></h3>
+            <div class="stars">★★★★★ <span style="color:#12291a;font-size:16px;font-weight:800">4.6</span> <span style="color:#5b7263;font-size:14px">(128 reseñas)</span></div>
+            <div class="meta">Panadería · Abierto hasta las 8:00 p.m. · Horario actualizado este mes</div>
+          </div>
+          <span class="badge-open">✓ Perfil verificado y activo</span>
+        </div>
+        <p style="font-weight:700;font-size:15.5px;color:#33503f">📸 Fotos nuevas este mes: vitrina, pan dulce recién horneado y el equipo trabajando. 📣 Publicación del mes: «Pan dulce los viernes — llega temprano, se acaba rápido.»</p>
+      </div>
+    </section>
+
+    <!-- STOP 2 -->
+    <section class="stop">
+      <div class="stopnum"><span>2</span></div>
+      <span class="sample-tag">Sample · Ejemplo — respuestas de muestra</span>
+      <h2>Cada reseña, contestada como un profesional</h2>
+      <p class="sub">Una reseña sin respuesta le dice al próximo cliente «aquí no le importa nadie». Nosotros contestamos <b>TODAS</b> — las buenas y las malas — en un máximo de 48 horas, con el tono de tu negocio.</p>
+
+      <div class="review">
+        <div class="box theirs">
+          <div class="who">★★★★★ — Cliente de muestra</div>
+          «El pan dulce es el mejor del área y atienden rapidísimo. Vuelvo todos los sábados.»
+        </div>
+        <div class="box ours">
+          <div class="who">Nuestra respuesta (a nombre de tu negocio)</div>
+          «¡Gracias por visitarnos cada sábado! El pan dulce sale del horno a las 7 a.m. — la próxima vez pregúntanos por la concha de temporada. — Equipo de La Esquina»
+        </div>
+      </div>
+      <div class="review">
+        <div class="box theirs">
+          <div class="who">★★☆☆☆ — Cliente de muestra</div>
+          «Llegué a las 7:40 p.m. y ya casi no quedaba nada. Decepcionado.»
+        </div>
+        <div class="box ours">
+          <div class="who">Nuestra respuesta (a nombre de tu negocio)</div>
+          «Lamentamos que no encontraras variedad. Horneamos en tandas pequeñas para que todo sea fresco y a veces se agota antes del cierre. Si nos llamas, te apartamos tu pedido sin costo. Gracias por decirnos — así mejoramos.»
+        </div>
+      </div>
+      <p class="note">Reseñas y respuestas de esta sección: EJEMPLOS DE MUESTRA (SAMPLE) con un negocio ficticio. No son testimonios de clientes reales.</p>
+    </section>
+
+    <!-- STOP 3 -->
+    <section class="stop">
+      <div class="stopnum"><span>3</span></div>
+      <span class="sample-tag">Sample · Reporte de muestra — números de ejemplo</span>
+      <h2>El reporte mensual que SÍ vas a entender</h2>
+      <p class="sub">Nuestra ventaja grande: al cierre de cada mes recibes un reporte en <b>lenguaje simple</b> (con versión en español disponible) que muestra lo que importa — cuánta gente te llamó y cuánta pidió direcciones para llegar. Sin tecnicismos, sin gráficas que nadie entiende.</p>
+      <div class="report-grid">
+        <div class="rep"><div class="pin-ic">📞</div><div class="num">86</div><div class="lbl">Llamadas</div><p class="expl">Personas que tocaron «Llamar» en tu perfil este mes. <i>(Número de muestra)</i></p></div>
+        <div class="rep"><div class="pin-ic">🧭</div><div class="num">214</div><div class="lbl">Direcciones pedidas</div><p class="expl">Personas que pidieron cómo llegar a tu puerta. <i>(Número de muestra)</i></p></div>
+        <div class="rep"><div class="pin-ic">🔎</div><div class="num">1,240</div><div class="lbl">Veces que apareciste</div><p class="expl">Búsquedas donde tu perfil salió en Google y Maps. <i>(Número de muestra)</i></p></div>
+        <div class="rep"><div class="pin-ic">⭐</div><div class="num">9</div><div class="lbl">Reseñas nuevas</div><p class="expl">Todas contestadas en 48 h o menos. <i>(Número de muestra)</i></p></div>
+      </div>
+      <div class="report-line">📍 <b>Resumen del mes en una línea (así llega el reporte):</b> «Este mes 86 personas te llamaron desde Google y 214 pidieron direcciones para llegar. Tu calificación se mantiene en 4.6★. Publicamos 4 veces y subimos 6 fotos nuevas.» — Eso, todos los meses, en palabras que cualquier dueño entiende.</div>
+    </section>
+
+    <!-- STOP 4 -->
+    <section class="stop">
+      <div class="stopnum"><span>4</span></div>
+      <h2>La comparación, con cifras verificadas</h2>
+      <p class="sub">Operar un perfil de Google lo cobran las agencias como servicio «premium». Compara el costo mensual real de operar el mismo perfil:</p>
+      <div class="comp">
+        <div class="comp-row">
+          <div class="name">Lemur Marketing<small>Operación de perfil, desde</small></div>
+          <div class="track"><div class="fill" style="width:75%"></div></div>
+          <div class="amt">$750/mes</div>
+        </div>
+        <div class="comp-row">
+          <div class="name">Agencias (retainer típico)<small>Guías de mercado 2026</small></div>
+          <div class="track"><div class="fill" style="width:100%"></div></div>
+          <div class="amt">$499–$999/mes</div>
+        </div>
+        <div class="comp-row">
+          <div class="name">Keres AI «Found»<small>Desde · abogados $499/mes</small></div>
+          <div class="track"><div class="fill" style="width:25%"></div></div>
+          <div class="amt">$249/mes</div>
+        </div>
+        <div class="comp-row us">
+          <div class="name">📍 MAPS ALIVE (nosotros)<small>Todo incluido, reporte en lenguaje simple</small></div>
+          <div class="track"><div class="fill us" style="width:20%"></div></div>
+          <div class="amt">$199/mes</div>
+        </div>
+        <p class="comp-note">Cifras de la competencia verificadas en sus páginas y guías de mercado 2026 al momento de publicar esta página. $199/mes × 12 = $2,388/año, contra $2,988–$9,000/año de las opciones de arriba — y con el reporte en lenguaje simple que ellos no te dan.</p>
+      </div>
+      <a class="cta" href="#PAYHIP-URL">QUIERO EL PRECIO DE $199<small>Primer mes pago único de $199 en el checkout</small></a>
+    </section>
+
+    <!-- STOP 5 -->
+    <section class="stop">
+      <div class="stopnum"><span>5</span></div>
+      <h2>Qué incluye tu mes, paso a paso</h2>
+      <p class="sub">Un ritmo fijo, cada mes, sin que tengas que pedirlo ni perseguir a nadie:</p>
+      <div class="incl">
+        <div class="step-card"><div class="wk">Semana 1</div><h3>Revisión completa del perfil</h3><p>Verificamos nombre, dirección, teléfono, horario (incluidos días feriados), categorías y servicios. Lo que esté mal o viejo, se corrige.</p></div>
+        <div class="step-card"><div class="wk">Cada semana</div><h3>1 publicación por semana (4 al mes)</h3><p>Ofertas, novedades, fotos del trabajo real y llamados a llamar o pedir direcciones — publicados en tu perfil de Google.</p></div>
+        <div class="step-card"><div class="wk">Todos los días</div><h3>Reseñas y preguntas vigiladas</h3><p>Respuesta profesional a TODAS las reseñas en 48 h máximo, y vigilancia de la sección de preguntas y respuestas para que ninguna duda quede colgando.</p></div>
+        <div class="step-card"><div class="wk">Cierre del mes</div><h3>Tu reporte en lenguaje simple</h3><p>Llamadas, direcciones pedidas, búsquedas y reseñas nuevas — en palabras claras, con versión en español disponible. Tú ves tus números sin ser técnico.</p></div>
+      </div>
+      <div class="incl-list">
+        <h3>Todo esto, incluido en los $199/mes:</h3>
+        <ul>
+          <li>4 publicaciones al mes</li>
+          <li>Fotos y datos siempre al día</li>
+          <li>Respuesta a TODAS las reseñas en 48 h</li>
+          <li>Vigilancia de preguntas y respuestas</li>
+          <li>Reporte mensual en lenguaje simple</li>
+          <li>Versión del reporte en español disponible</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- STOP 6 -->
+    <section class="stop">
+      <div class="stopnum"><span>6</span></div>
+      <h2>La cerca honesta — léela antes de pagar</h2>
+      <p class="sub">Preferimos perder una venta que prometer lo que nadie puede cumplir:</p>
+      <div class="honest">
+        <h3>⚠️ Lo que NO prometemos — y lo que SÍ</h3>
+        <ul>
+          <li><b>NO prometemos la posición #1 en Google Maps.</b> Nadie honesto puede prometerla: el orden depende de Google, de tu zona y de tu competencia.</li>
+          <li><b>SÍ prometemos operación constante:</b> publicaciones cada semana, datos correctos y reseñas contestadas — el trabajo continuo que un perfil vivo necesita.</li>
+          <li><b>Sin contraseñas:</b> trabajamos con el permiso oficial de «manager» de Google Business Profile. Tú nos das acceso, tú lo puedes quitar cuando quieras. Nunca te pedimos tu contraseña.</li>
+          <li><b>Cómo se paga:</b> en el checkout pagas el <b>primer mes ($199) como pago único</b>. La continuidad del servicio se coordina por membresía o factura mensual — sin cargos automáticos sorpresa.</li>
+          <li><b>Un perfil por suscripción:</b> los $199/mes cubren UN perfil de Google Business Profile. ¿Tienes más locales? Cada perfil adicional se cotiza aparte.</li>
+        </ul>
+      </div>
+      <a class="cta" href="#PAYHIP-URL">ENTENDIDO — ACTIVAR MAPS ALIVE<small>Primer mes $199 · Pago único en el checkout</small></a>
+    </section>
+  </div>
+</main>
+
+<section class="final streets">
+  <div class="wrap" style="position:relative;z-index:2">
+    <h2>Tu próximo cliente ya está buscando en el mapa. Que te encuentre VIVO. 📍</h2>
+    <p>Activa hoy el primer mes: revisamos tu perfil, empezamos las publicaciones y tus reseñas dejan de quedar sin respuesta.</p>
+    <a class="cta" href="#PAYHIP-URL">ACTIVAR MI PRIMER MES — $199<small>Pago único del primer mes · Acceso por permiso oficial, sin contraseñas</small></a>
+  </div>
+</section>
+
+<footer>MAPS ALIVE — Operación mensual de Google Business Profile · $199/mes por perfil · Los ejemplos marcados SAMPLE usan un negocio ficticio y números de muestra · No afiliado a Google LLC.</footer>
+
+</body>
+</html>
